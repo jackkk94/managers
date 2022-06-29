@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "@ngrx/store": "^14.0.0",
+    "@ngrx/store": "^10.0.0",
     "@ngxs/store": "^3.7.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

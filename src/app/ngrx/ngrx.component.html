@@ -1,0 +1,3 @@
+<button (click)="addEntity()"> add entity</button>
+
+<div *ngFor="let enitiy of entities$ | async">{{enitiy.id}}</div>
