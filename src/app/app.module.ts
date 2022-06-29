@@ -14,7 +14,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
-    NgxsModule.forRoot([]),],
+    NgxsModule.forRoot([]),
+    StoreModule.forRoot({}, {}),],
 
   providers: [],
   bootstrap: [AppComponent]
