@@ -1,6 +1,6 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
-import { EntityState } from '../models';
-import { Add } from './ngrx-entity.actions';
+import { EntityState } from '../shared/models/Entities';
+import { Add, Added } from './ngrx-entity.actions';
 
 export const initialState = {
   entities: [],
@@ -9,11 +9,9 @@ export const initialState = {
 
 const _reducer = createReducer(
   initialState,
-  on(Add, (state, action) => {
-    console.log(21)
-    return {
-    entities: [...state.entities, action.payload]
-  }})
+  on(Added, (state, {payload}) => ({
+    entities: [...state.entities, payload]
+  }))
 );
 
 export function EntitiesReducer(state, action) {

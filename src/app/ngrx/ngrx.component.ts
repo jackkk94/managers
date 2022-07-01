@@ -1,23 +1,47 @@
 import { Component } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+
 import { Observable } from 'rxjs';
-import { Entity, EntityState } from '../models';
+
 import { Add } from './ngrx-entity.actions';
+import { Store, select } from '@ngrx/store';
+import { selectEntities } from './ngrx-entity.selectors';
+import { ManagerComponent } from '../manager-base.component';
+import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { MeasureService } from '../shared/services/measure.service';
+import { WrapperService } from './manager-wrapper.service';
+import { Entity } from '../shared/models/Entities';
+import { createEntity } from '../shared/utils/Entities';
+import { BehaviorSubject } from 'rxjs';
+import { delay } from 'rxjs';
+import { LoggerService } from '../shared/services/logger.service';
+import { ChartPoint } from '../shared/components/scatter-chart/scatter-chart.component';
+import { LocalStorageService } from '../shared/services/local-storage.service';
+
 
 @Component({
   selector: 'app-entity',
-  templateUrl: './ngrx.component.html'
+  templateUrl: './ngrx.component.html',
+  providers: [WrapperService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgrxComponent {
+export class NgrxComponent extends ManagerComponent {
   entities$: Observable<Entity[]>;
-
-  constructor(private store: Store<EntityState>) {
-    this.entities$ = this.store.select((state: EntityState) => state.entities);
-    this.entities$.subscribe(e=> console.log(e))
+  public name = 'ngrx';
+  constructor(route: ActivatedRoute, private store: Store, measureService: MeasureService, private wrapperManager: WrapperService, loggerService: LoggerService, localStorageService: LocalStorageService) {
+    super(route, measureService, loggerService, localStorageService);
+    this.entities$ = this.store.select(selectEntities);
+    this.wrapperManager.store$.subscribe((z: Entity) => {
+      if (this.wrapperManager.measures.length < this.entitiesCount) {
+        this.wrapperManager.dispatch(Add({ payload: createEntity(z) }));
+      } else {
+        this.chartData = this.buildChartData();
+        this.saveResult();
+      }
+    })
   }
 
-  addEntity() {
-    this.store.dispatch(Add({ payload: { id: 3 } as Entity }));
+  public ngOnInit(): void {
+    this.wrapperManager.dispatch(Add({ payload: createEntity(undefined) }));
   }
-
 }

@@ -1,3 +1,14 @@
-<button (click)="addEntity()"> add entity</button>
+<ng-container *ngIf="entities$ | async; let entities">
+  <app-progress-bar
+    [value]="entities.length"
+    label="entities"
+    [max]="entitiesCount"
+  ></app-progress-bar>
 
-<div *ngFor="let enitiy of entities$ | async">{{enitiy.id}}</div>
+  <app-scatter-chart
+  [data]="chartData"
+  color="blue"
+  label="NgRx"
+  *ngIf="chartData?.length"
+></app-scatter-chart>
+</ng-container>

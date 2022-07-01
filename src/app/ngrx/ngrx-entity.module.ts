@@ -4,6 +4,9 @@ import { RouterModule } from '@angular/router';
 import { NgrxComponent } from './ngrx.component';
 import { EntitiesReducer } from './ngrx-entity.reducer';
 import { StoreModule } from '@ngrx/store';
+import { SharedModule } from '../shared/shared.module';
+import { EntityEffects } from './ngrx-entity.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
@@ -12,7 +15,9 @@ import { StoreModule } from '@ngrx/store';
       path: '',
       component: NgrxComponent
     }]),
-    StoreModule.forFeature('EntetiesState', EntitiesReducer)
+    SharedModule,
+    StoreModule.forFeature('entityState', EntitiesReducer),
+    EffectsModule.forFeature([EntityEffects])
   ],
   declarations: [NgrxComponent]
 })

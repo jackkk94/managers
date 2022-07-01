@@ -1,16 +1,27 @@
 import { Injectable } from '@angular/core';
 import { Action, State, StateContext } from '@ngxs/store';
-import { addEntity } from './ngxs-entity.actions';
+import { of, delay, tap } from 'rxjs';
+
+import { Entity, EntityState } from '../shared/models/Entities';
+import { addedEntity, addEntity } from './ngxs-entity.actions';
 
 
-@State<string[]>({
+@State<EntityState>({
   name: 'entities',
-  defaults: []
+  defaults: { entities: [] }
 })
+
 @Injectable()
 export class NgXsEntitiesState {
   @Action(addEntity)
-  feedAnimals(ctx: StateContext<string[]>, { name }: addEntity) {
-    ctx.setState((state) => ([...state, name]))
+  addEntity(ctx: StateContext<EntityState>, { payload }: addedEntity) {
+    return of(payload).pipe(delay(1), tap(entity => ctx.dispatch(new addedEntity(entity))))
+  }
+
+  @Action(addedEntity)
+  addedEntity(ctx: StateContext<EntityState>, { payload }: addedEntity) {
+    ctx.setState((state) => ({
+      entities: [...state.entities, payload]
+    }))
   }
 }

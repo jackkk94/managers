@@ -5,6 +5,7 @@ import { NgxsModule } from '@ngxs/store';
 import { RouterModule } from '@angular/router';
 import { NgXsComponent } from './ngxs.component';
 import { NgXsEntitiesState } from './ngxs-entity.state';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -13,9 +14,8 @@ import { NgXsEntitiesState } from './ngxs-entity.state';
       path: '',
       component: NgXsComponent
     }]),
+    SharedModule,
     NgxsModule.forFeature([NgXsEntitiesState]),
-
-    
   ],
   declarations: [NgXsComponent]
 })
