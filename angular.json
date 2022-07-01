@@ -23,7 +23,7 @@
             "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "baseHref": "/state-managers/",
+            "baseHref": "/managers/",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
