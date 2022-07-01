@@ -38,6 +38,8 @@ export class ResultsComponent {
     this.ngxsData = JSON.parse(this.localStorageService.getData('ngxs')) as ILog[];
   }
 
+  private get 
+
   private buildChartData(): void{
     this.ngrxChartData =  this.ngrxData.map(v => ({x: v.start, y: v.duration}) as ChartPoint);
     this.ngxsChartData =  this.ngxsData.map(v => ({x: v.start, y: v.duration}) as ChartPoint);
