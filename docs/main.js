@@ -38,7 +38,7 @@ const routes = [
     },
     {
         path: AppRoutes.Results,
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_results_results_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./results/results.module */ 9415)).then(m => m.ResultsModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_results_results_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./results/results.module */ 9415)).then(m => m.ResultsModule)
     }
 ];
 class AppRoutingModule {

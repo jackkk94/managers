@@ -214,7 +214,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ngrx_entity_selectors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ngrx-entity.selectors */ 9120);
 /* harmony import */ var _manager_base_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../manager-base.component */ 2506);
 /* harmony import */ var _manager_wrapper_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./manager-wrapper.service */ 4387);
-/* harmony import */ var _shared_utils_Entities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/utils/Entities */ 9586);
+/* harmony import */ var _shared_utils_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../shared/utils/utils */ 4750);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 2560);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ 124);
 /* harmony import */ var _ngrx_store__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ngrx/store */ 3488);
@@ -279,7 +279,7 @@ class NgrxComponent extends _manager_base_component__WEBPACK_IMPORTED_MODULE_2__
     this.wrapperManager.store$.subscribe(z => {
       if (this.wrapperManager.measures.length < this.entitiesCount) {
         this.wrapperManager.dispatch((0,_ngrx_entity_actions__WEBPACK_IMPORTED_MODULE_0__.Add)({
-          payload: (0,_shared_utils_Entities__WEBPACK_IMPORTED_MODULE_4__.createEntity)(z)
+          payload: (0,_shared_utils_utils__WEBPACK_IMPORTED_MODULE_4__.createEntity)(z)
         }));
       } else {
         this.chartData = this.buildChartData();
@@ -290,7 +290,7 @@ class NgrxComponent extends _manager_base_component__WEBPACK_IMPORTED_MODULE_2__
 
   ngOnInit() {
     this.wrapperManager.dispatch((0,_ngrx_entity_actions__WEBPACK_IMPORTED_MODULE_0__.Add)({
-      payload: (0,_shared_utils_Entities__WEBPACK_IMPORTED_MODULE_4__.createEntity)(undefined)
+      payload: (0,_shared_utils_utils__WEBPACK_IMPORTED_MODULE_4__.createEntity)(undefined)
     }));
   }
 

@@ -182,7 +182,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! tslib */ 4929);
 /* harmony import */ var _ngxs_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @ngxs/store */ 5508);
 /* harmony import */ var _manager_base_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../manager-base.component */ 2506);
-/* harmony import */ var _shared_utils_Entities__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/utils/Entities */ 9586);
+/* harmony import */ var _shared_utils_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/utils/utils */ 4750);
 /* harmony import */ var _manager_wrapper_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./manager-wrapper.service */ 3403);
 /* harmony import */ var _ngxs_entity_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ngxs-entity.actions */ 5705);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 2560);
@@ -247,7 +247,7 @@ class NgXsComponent extends _manager_base_component__WEBPACK_IMPORTED_MODULE_1__
     this.name = 'ngxs';
     this.wrapperManager.store$.subscribe(z => {
       if (this.wrapperManager.measures.length < this.entitiesCount) {
-        this.wrapperManager.dispatch(new _ngxs_entity_actions__WEBPACK_IMPORTED_MODULE_4__.addEntity((0,_shared_utils_Entities__WEBPACK_IMPORTED_MODULE_2__.createEntity)(z)));
+        this.wrapperManager.dispatch(new _ngxs_entity_actions__WEBPACK_IMPORTED_MODULE_4__.addEntity((0,_shared_utils_utils__WEBPACK_IMPORTED_MODULE_2__.createEntity)(z)));
       } else {
         this.chartData = this.buildChartData();
         this.saveResult();
@@ -256,7 +256,7 @@ class NgXsComponent extends _manager_base_component__WEBPACK_IMPORTED_MODULE_1__
   }
 
   ngOnInit() {
-    this.wrapperManager.dispatch(new _ngxs_entity_actions__WEBPACK_IMPORTED_MODULE_4__.addEntity((0,_shared_utils_Entities__WEBPACK_IMPORTED_MODULE_2__.createEntity)(undefined)));
+    this.wrapperManager.dispatch(new _ngxs_entity_actions__WEBPACK_IMPORTED_MODULE_4__.addEntity((0,_shared_utils_utils__WEBPACK_IMPORTED_MODULE_2__.createEntity)(undefined)));
   }
 
 }

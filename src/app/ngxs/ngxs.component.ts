@@ -10,7 +10,7 @@ import { Entity } from '../shared/models/Entities';
 import { LocalStorageService } from '../shared/services/local-storage.service';
 import { LoggerService } from '../shared/services/logger.service';
 import { MeasureService } from '../shared/services/measure.service';
-import { createEntity } from '../shared/utils/Entities';
+import { createEntity } from '../shared/utils/utils';
 import { WrapperService } from './manager-wrapper.service';
 
 import { addEntity } from './ngxs-entity.actions';

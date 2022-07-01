@@ -1,33 +1,33 @@
 <div class="row justify-content-between">
   <div class="col-md-6">
     <app-scatter-chart
-      [data]="ngrxChartData"
+      [data]="ngrxResult.chartData"
       color="blue"
       label="NgRx"
       class="mb-3"
-      *ngIf="ngrxChartData?.length"
+      *ngIf="ngrxResult?.chartData?.length"
     ></app-scatter-chart>
     <h3>Duration</h3>
-    <h4 [class.red]="ngrxDuration > ngxsDuration">{{ ngrxDuration }}</h4>
+    <h4 [class.red]="ngrxResult.fullDuration > ngxsResult.fullDuration">{{ ngrxResult.fullDuration }}</h4>
     <h3>Average Duration</h3>
-    <h4 [class.red]="ngrxAvrDuration > ngxsAvrDuration">
-      {{ ngrxAvrDuration }}
+    <h4 [class.red]="ngrxResult.fullDuration > ngxsResult.fullDuration">
+      {{ ngrxResult.AvrDuration  }}
     </h4>
   </div>
   <div class="col-md-6">
     <app-scatter-chart
-      [data]="ngxsChartData"
+      [data]="ngxsResult.chartData"
       color="green"
       label="NgXs"
       class="mb-3"
-      *ngIf="ngxsChartData?.length"
+      *ngIf="ngxsResult?.chartData?.length"
     ></app-scatter-chart>
     <h3>Duration</h3>
-    <h4 [class.red]="ngxsDuration > ngrxDuration">{{ ngxsDuration }}</h4>
+    <h4 [class.red]="ngxsResult.fullDuration > ngrxResult.fullDuration">{{ ngxsResult.fullDuration }}</h4>
 
     <h3>Average Duration</h3>
-    <h4 [class.red]="ngxsAvrDuration > ngrxAvrDuration">
-      {{ ngxsAvrDuration }}
+    <h4 [class.red]="ngxsResult.AvrDuration > ngrxResult.AvrDuration">
+      {{ ngxsResult.AvrDuration }}
     </h4>
   </div>
 </div>

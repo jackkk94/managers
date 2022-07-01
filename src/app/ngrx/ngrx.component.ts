@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { MeasureService } from '../shared/services/measure.service';
 import { WrapperService } from './manager-wrapper.service';
 import { Entity } from '../shared/models/Entities';
-import { createEntity } from '../shared/utils/Entities';
+import { createEntity } from '../shared/utils/utils';
 import { BehaviorSubject } from 'rxjs';
 import { delay } from 'rxjs';
 import { LoggerService } from '../shared/services/logger.service';
