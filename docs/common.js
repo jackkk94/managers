@@ -55,22 +55,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "createEntity": () => (/* binding */ createEntity),
 /* harmony export */   "getAverageDuration": () => (/* binding */ getAverageDuration),
 /* harmony export */   "getFullDuration": () => (/* binding */ getFullDuration),
+/* harmony export */   "getStDeviation": () => (/* binding */ getStDeviation),
 /* harmony export */   "normalizeData": () => (/* binding */ normalizeData)
 /* harmony export */ });
 /* harmony import */ var guid_typescript__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! guid-typescript */ 9846);
 
-const createEntity = (parent) => {
-    const id = guid_typescript__WEBPACK_IMPORTED_MODULE_0__.Guid.create();
-    return { id, name: `object_${Math.floor(Math.random() * 10)}${id}`, parent };
+const buildExperimentResult = (data) => {
+    return {
+        data,
+        chartData: normalizeData(data).map(v => ({ x: v.start, y: v.duration })),
+        fullDuration: getFullDuration(data),
+        AvrDuration: getAverageDuration(data),
+        stDeviation: getStDeviation(data)
+    };
 };
-const normalizeData = (data) => {
+const getStDeviation = (data) => {
     const n = data.length;
     const durations = data.map(y => y.duration);
     const averageY = durations.reduce((a, b) => (a + b)) / n;
     const sqrts = durations.map(y => (y - averageY) ** 2);
     const dispersion = sqrts.reduce((a, b) => (a + b)) / (n - 1);
-    const stDeviation = Math.sqrt(dispersion);
-    return data.filter(z => z.duration < (averageY + 3 * stDeviation) && z.duration > (averageY - 3 * stDeviation));
+    return Math.sqrt(dispersion);
 };
 const getFullDuration = (data) => {
     const lastItem = data[data.length - 1];
@@ -79,13 +84,14 @@ const getFullDuration = (data) => {
 const getAverageDuration = (data) => {
     return data.map(item => item.duration).reduce((a, b) => (a + b)) / data.length;
 };
-const buildExperimentResult = (data) => {
-    return {
-        data,
-        chartData: normalizeData(data).map(v => ({ x: v.start, y: v.duration })),
-        fullDuration: getFullDuration(data),
-        AvrDuration: getAverageDuration(data)
-    };
+const normalizeData = (data) => {
+    const stDeviation = getStDeviation(data);
+    const averageY = getAverageDuration(data);
+    return data.filter(z => z.duration < (averageY + 3 * stDeviation) && z.duration > (averageY - 3 * stDeviation));
+};
+const createEntity = (parent) => {
+    const id = guid_typescript__WEBPACK_IMPORTED_MODULE_0__.Guid.create();
+    return { id, name: `object_${Math.floor(Math.random() * 10)}${id}`, parent };
 };
 
 

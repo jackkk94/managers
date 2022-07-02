@@ -34,7 +34,7 @@ export class ScatterChartComponent {
   private _data: ChartPoint[] = [];
 
   public scatterChartOptions: ChartOptions = {
-    responsive: true
+    responsive: true,
   };
 
   public scatterChartData: ChartDataSets[] = [

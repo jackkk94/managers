@@ -196,7 +196,7 @@ class ScatterChartComponent {
     constructor() {
         this._data = [];
         this.scatterChartOptions = {
-            responsive: true
+            responsive: true,
         };
         this.scatterChartData = [
             {
