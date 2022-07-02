@@ -23,7 +23,9 @@ import { NgXsEntitiesState } from './ngxs-entity.state';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgXsComponent extends ManagerComponent {
+  
   @Select(state=> state.entities.entities) entities$: Observable<Entity[]>;
+
   public name = 'ngxs';
 
   constructor(route: ActivatedRoute, private store: Store, measureService: MeasureService, private wrapperManager: WrapperService, loggerService: LoggerService,  localStorageService: LocalStorageService) {

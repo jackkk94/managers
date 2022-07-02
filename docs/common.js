@@ -77,17 +77,17 @@ const getStDeviation = (data) => {
     const dispersion = sqrts.reduce((a, b) => (a + b)) / (n - 1);
     return Math.sqrt(dispersion);
 };
+const getAverageDuration = (data) => {
+    return data.map(item => item.duration).reduce((a, b) => (a + b)) / data.length;
+};
 const getFullDuration = (data) => {
     const lastItem = data[data.length - 1];
     return lastItem.duration + lastItem.start;
 };
-const getAverageDuration = (data) => {
-    return data.map(item => item.duration).reduce((a, b) => (a + b)) / data.length;
-};
 const normalizeData = (data) => {
     const stDeviation = getStDeviation(data);
     const averageY = getAverageDuration(data);
-    return data.filter(z => z.duration < (averageY + 3 * stDeviation) && z.duration > (averageY - 3 * stDeviation));
+    return data.map(z => z.duration < (averageY + 3 * stDeviation) && z.duration > (averageY - 3 * stDeviation) ? z : { ...z, duration: averageY });
 };
 const createEntity = (parent) => {
     const id = guid_typescript__WEBPACK_IMPORTED_MODULE_0__.Guid.create();

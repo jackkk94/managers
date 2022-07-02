@@ -30,20 +30,20 @@ export const getStDeviation = (data: ILog[]): number => {
   return Math.sqrt(dispersion);
 }
 
+export const getAverageDuration = (data: ILog[]): number => {
+  return data.map(item => item.duration).reduce((a, b) => (a + b)) / data.length;
+}
+
 export const getFullDuration = (data: ILog[]): number => {
   const lastItem = data[data.length - 1]
   return lastItem.duration + lastItem.start;
-}
-
-export const getAverageDuration = (data: ILog[]): number => {
-  return data.map(item => item.duration).reduce((a, b) => (a + b)) / data.length;
 }
 
 export const normalizeData = (data: ILog[]): ILog[] => {
   const stDeviation = getStDeviation(data);
   const averageY = getAverageDuration(data);
 
-  return data.filter(z => z.duration < (averageY + 3 * stDeviation) && z.duration > (averageY - 3 * stDeviation));
+  return data.map(z => z.duration < (averageY + 3 * stDeviation) && z.duration > (averageY - 3 * stDeviation) ? z : { ...z, duration: averageY });
 }
 
 export const createEntity = (parent: Entity): Entity => {
